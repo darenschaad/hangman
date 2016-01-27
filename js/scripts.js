@@ -1,4 +1,4 @@
-var wordBank = ["cat", "couch", "computer", "airplane", "programming", "refrigerator", "tunnel", "apricot", "symphany", "obsequious", "beautiful", "runner", "bowling", "pitcher", "global", "brainiac"];
+var wordBank = ["cat", "couch", "computer", "airplane", "programming", "refrigerator", "tunnel", "apricot", "symphany", "obsequious", "beautiful", "runner", "bowling", "pitcher", "global", "brainiac", "slammer", "justified", "incredible", "enjoyement"];
 
 var wordGrabber = function(randomNumber) {
   var currentWord = wordBank[randomNumber];
@@ -56,3 +56,23 @@ var winLoseCondition = function(incorrectGuessCounter, frontEndLetters) {
     return "win";
   }
 }
+
+$(document).ready(function() {
+  event.preventDefault();
+
+  var randomNumber = 3;
+  var currentWord = wordGrabber(randomNumber);
+  var backEndLetters = wordSplitter(currentWord);
+  var frontEndLetters = letterEncryption(backEndLetters);
+  var incorrectGuessCounter = 0;
+  $("span#displayFrontEndLetters").text(frontEndLetters);
+
+  for (var gameOutcome = ""; gameOutcome === "win" || gameOutcome === "lose";) {
+    $("button#submit").click(function() {
+      var currentGuess = $("input#letterGuess").val();
+      letterGuess(currentGuess, backEndLetters, frontEndLetters, incorrectGuessCounter);
+      $("span#displayFrontEndLetters").text(frontEndLetters);
+      var gameOutcome = winLoseCondition(incorrectGuessCounter, frontEndLetters);
+    });
+  }
+});
