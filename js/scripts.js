@@ -39,3 +39,20 @@ var revealCorrectLetter = function(currentIndex, currentGuess, frontEndLetters) 
   frontEndLetters[currentIndex] = currentGuess;
   return frontEndLetters;
 }
+
+var winLoseCondition = function(incorrectGuessCounter, frontEndLetters) {
+  if (incorrectGuessCounter > 7) {
+    return "lose";
+  }
+
+  var amountOfRevealedLetters = 0;
+  for (var i = 0; i < frontEndLetters.length; i++) {
+    if (frontEndLetters[i] != "_") {
+      amountOfRevealedLetters += 1;
+    }
+  }
+
+  if (amountOfRevealedLetters = frontEndLetters.length) {
+    return "win";
+  }
+}

@@ -31,8 +31,11 @@ describe('revealCorrectLetter', function(currentIndex, currentGuess, frontEndLet
   });
 });
 
-describe('winLoseCondition', function (incorrectGuessCounter, frontEndLetters) {
-  it("will end the game if player has guessed wrong 8 times", function() {
-    expect(8, ["_", "b", "_"]).to.equal("lose")
+describe('winLoseCondition', function(incorrectGuessCounter, frontEndLetters) {
+  it("will result in a loss if player has guessed wrong 8 times", function() {
+    expect(winLoseCondition(8, ["_", "a", "_"])).to.equal("lose")
+  });
+  it("will result in a win if the player has guessed all of the correct letters in the word", function() {
+    expect(winLoseCondition(2, ["a", "i", "r", "p", "l", "a", "n", "e"])).to.equal("win")
   });
 });
