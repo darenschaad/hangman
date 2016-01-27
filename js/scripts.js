@@ -11,7 +11,7 @@ var wordSplitter = function(currentWord) {
 }
 
 var letterEncryption = function(backEndLetters) {
-  var frontEndLetters = backEndLetters;
+  var frontEndLetters = backEndLetters.slice();
   for (var i = 0; i < backEndLetters.length; i++) {
     frontEndLetters[i] = "_";
     }
@@ -26,13 +26,16 @@ var letterGuess = function(currentGuess, backEndLetters, frontEndLetters, incorr
       correctGuess = true;
     }
   }
+  return correctGuess;
+  return incorrectGuessCounter;
+}
 
-  if (correctGuess === true) {
-    return frontEndLetters;
-  } else {
-    incorrectGuessCounter += 1;
-    return incorrectGuessCounter;
+var decreaseGuessValue = function(incorrectGuessCounter, correctGuess, currentGuess, frontEndLetters) {
+  if (correctGuess === false) {
+    alert("Sorry! ''" + currentGuess + "'' is not in the word!")
+    incorrectGuessCounter -= 1;
   }
+  return incorrectGuessCounter;
 }
 
 var revealCorrectLetter = function(currentIndex, currentGuess, frontEndLetters) {
@@ -41,7 +44,7 @@ var revealCorrectLetter = function(currentIndex, currentGuess, frontEndLetters) 
 }
 
 var winLoseCondition = function(incorrectGuessCounter, frontEndLetters) {
-  if (incorrectGuessCounter > 7) {
+  if (incorrectGuessCounter === 0) {
     return "lose";
   }
 
@@ -52,27 +55,40 @@ var winLoseCondition = function(incorrectGuessCounter, frontEndLetters) {
     }
   }
 
-  if (amountOfRevealedLetters = frontEndLetters.length) {
+  if (amountOfRevealedLetters === frontEndLetters.length) {
     return "win";
   }
 }
+var displayWord = function(frontEndLetters) {
+  return frontEndLetters.toString().replace( /,/g, " " );
+}
+
 
 $(document).ready(function() {
   event.preventDefault();
 
-  var randomNumber = 3;
+  var randomNumber = Math.floor((Math.random() * 18) + 0);
   var currentWord = wordGrabber(randomNumber);
   var backEndLetters = wordSplitter(currentWord);
   var frontEndLetters = letterEncryption(backEndLetters);
-  var incorrectGuessCounter = 0;
-  $("span#displayFrontEndLetters").text(frontEndLetters);
+  var incorrectGuessCounter = 8;
+  $("span#displayFrontEndLetters").text(displayWord(frontEndLetters));
+  $("span#displayRemainingGuesses").text(incorrectGuessCounter);
 
-  for (var gameOutcome = ""; gameOutcome === "win" || gameOutcome === "lose";) {
-    $("button#submit").click(function() {
+  var gameOutcome = "";
+
+    $("button#submitLetterGuess").click(function() {
       var currentGuess = $("input#letterGuess").val();
-      letterGuess(currentGuess, backEndLetters, frontEndLetters, incorrectGuessCounter);
-      $("span#displayFrontEndLetters").text(frontEndLetters);
+      correctGuess = letterGuess(currentGuess, backEndLetters, frontEndLetters, incorrectGuessCounter);
+      incorrectGuessCounter = decreaseGuessValue(incorrectGuessCounter, correctGuess, currentGuess, frontEndLetters)
+      $("span#displayRemainingGuesses").text(incorrectGuessCounter);
+      $("span#displayFrontEndLetters").text(displayWord(frontEndLetters));
       var gameOutcome = winLoseCondition(incorrectGuessCounter, frontEndLetters);
+      if (gameOutcome === "win") {
+        alert("You won!");
+      } else if (gameOutcome === "lose") {
+        alert("You lost!")
+      }
+      $("input#letterGuess").val("");
     });
-  }
 });
