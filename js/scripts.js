@@ -58,6 +58,7 @@ var winLoseCondition = function(incorrectGuessCounter, frontEndLetters) {
   if (amountOfRevealedLetters === frontEndLetters.length) {
     return "win";
   }
+
 }
 var displayWord = function(frontEndLetters) {
   return frontEndLetters.toString().replace( /,/g, " " );
@@ -67,27 +68,41 @@ var displayWord = function(frontEndLetters) {
 $(document).ready(function() {
   event.preventDefault();
 
+  //Set Random Word
   var randomNumber = Math.floor((Math.random() * 18) + 0);
   var currentWord = wordGrabber(randomNumber);
+
+  //Break Word Into Array for Front and Back End Use
   var backEndLetters = wordSplitter(currentWord);
   var frontEndLetters = letterEncryption(backEndLetters);
+
+  //Set Initial Amount of Incorrect Guesses Remaining
   var incorrectGuessCounter = 8;
+
+  //Intially Display Front End Array and Remaning Guesses
   $("span#displayFrontEndLetters").text(displayWord(frontEndLetters));
   $("span#displayRemainingGuesses").text(incorrectGuessCounter);
 
+  //Define Neutral Game Outcome (as opposed to win/lose)
   var gameOutcome = "";
 
+    //User Inputs Letter Guess
     $("button#submitLetterGuess").click(function() {
       var currentGuess = $("input#letterGuess").val();
+
       correctGuess = letterGuess(currentGuess, backEndLetters, frontEndLetters, incorrectGuessCounter);
       incorrectGuessCounter = decreaseGuessValue(incorrectGuessCounter, correctGuess, currentGuess, frontEndLetters)
       $("span#displayRemainingGuesses").text(incorrectGuessCounter);
       $("span#displayFrontEndLetters").text(displayWord(frontEndLetters));
+
       var gameOutcome = winLoseCondition(incorrectGuessCounter, frontEndLetters);
       if (gameOutcome === "win") {
-        alert("You won!");
+        $("form#guessEntryForm").hide();
+        $(".winner").show();
+
       } else if (gameOutcome === "lose") {
-        alert("You lost!")
+        $("form#guessEntryForm").hide();
+        $(".loser").show();
       }
       $("input#letterGuess").val("");
     });

@@ -1,3 +1,7 @@
-.ticketDisplay {
+.winner {
+  display: none;
+}
+
+.loser {
   display: none;
 }
