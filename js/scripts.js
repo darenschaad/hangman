@@ -60,13 +60,12 @@ var winLoseCondition = function(incorrectGuessCounter, frontEndLetters) {
   }
 
 }
+
 var displayWord = function(frontEndLetters) {
   return frontEndLetters.toString().replace( /,/g, " " );
 }
 
-
-$(document).ready(function() {
-  event.preventDefault();
+var runHangman = function() {
 
   //Set Random Word
   var randomNumber = Math.floor((Math.random() * 18) + 0);
@@ -106,4 +105,17 @@ $(document).ready(function() {
       }
       $("input#letterGuess").val("");
     });
+}
+
+$(document).ready(function() {
+  event.preventDefault();
+  runHangman();
+
+  $("button.reset").click(function(){
+
+    runHangman();
+    $("form#guessEntryForm").show();
+    $(".loser").hide();
+    $(".winner").hide();
+  });
 });
