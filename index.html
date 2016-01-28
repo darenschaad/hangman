@@ -10,29 +10,40 @@
   </head>
   <body>
     <div class="container">
+      <div class="header">
+        <h1>Hangman</h1>
+        <hr>
+        <h4>Click on the letters below to guess the word!</h4>
+      </div>
       <div class="row">
-        <div class="col-md-6">
-          <!-- <form id="guessEntryForm">
-            <label>Guess a letter!</label>
-            <input id="letterGuess" type="text" maxlength="1" autofocus="autofocus">
-            <button id="submitLetterGuess" type="button">Submit</button>
-          </form> -->
-
-          <span id="displayFrontEndLetters"></span><br>
-          <span>Incorrect Guesses Remaining: <span><span id="displayRemainingGuesses"></span>
+        <div class="col-sm-8">
+          <div>
+            <span id="displayFrontEndLetters"></span><br>
+            <div id="remainingGuessesContainer">
+              <span>Incorrect Guesses Remaining: <span><span id="displayRemainingGuesses"></span>
+            </div>
+          </div>
+          <div id="letterContainer">
+          </div>
+          <div id="warningContainer">
+            <span>Sorry! '</span><span id="displayWarning"></span><span>' is not in the word!</span>
+          </div>
         </div>
-        <div id="letterContainer">
-
+        <div class="col-sm-4">
+          <div id="displayHangmanImage">
+          </div>
         </div>
-
-        <div class="winner">
-          <h1>Congratulations, you won!</h1>
-          <button type="button" class= "reset">Reset</button>
+      </div>
+      <div class="winner">
+        <h1>Congratulations, you won!</h1>
+        <button type="button" class= "reset">Reset</button>
+      </div>
+      <div class="loser">
+        <h1>Sorry, you lost!</h1>
+        <div id="lossDisplayContainer">
+          <span>The word was "</span><span id="lossDisplayWord"></span><span>"!</span><br>
         </div>
-        <div class="loser">
-          <h1>Sorry, you lost!</h1>
-          <button type="button" class= "reset">Reset</button>
-        </div>
+        <button type="button" class= "reset">Reset</button>
       </div>
     </div>
   </body>

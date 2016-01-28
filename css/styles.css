@@ -11,11 +11,49 @@
   color: #0088cc;
 }
 
+.letterColor:hover {
+  text-decoration: underline;
+}
+
+.postLetterColor {
+  cursor: default;
+  color: #0088cc;
+}
+
 .deactivatedLetter {
   cursor: default;
   color: red;
 }
 
-.letterColor:hover {
-  text-decoration: underline;
+#displayFrontEndLetters {
+  font-size: 50px;
+}
+
+.header {
+  text-align: center;
+}
+
+#letterContainer {
+  font-size: 30px;
+
+}
+
+#letterContainer span {
+  margin: 2.9px;
+}
+
+#remainingGuessesContainer, #lossDisplayContainer {
+  font-size: 20px;
+  padding: 8px;
+}
+
+#warningContainer {
+  display: none;
+  font-size: 20px;
+  padding: 8px;
+}
+
+#displayHangmanImage img {
+  max-width: 100%;
+  height: auto;
 }

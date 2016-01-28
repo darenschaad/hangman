@@ -1,4 +1,4 @@
-var wordBank = ["cat", "couch", "computer", "airplane", "programming", "refrigerator", "tunnel", "apricot", "symphany", "obsequious", "beautiful", "runner", "bowling", "pitcher", "global", "brainiac", "slammer", "justified", "incredible", "enjoyement"];
+var wordBank = ["cat", "couch", "computer", "airplane", "programming", "refrigerator", "tunnel", "apricot", "symphany", "obsequious", "beautiful", "runner", "bowling", "pitcher", "global", "brainiac", "slammer", "justified", "incredible", "enjoyement", "quitter", "pheasant", "tacos", "genuine", "tubular", "groovy", "zoinks", "android", "gruel", "toast", "xenophobia", "xylophone", "matrix"];
 
 var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
@@ -38,8 +38,10 @@ var letterGuess = function(currentGuess, backEndLetters, frontEndLetters, incorr
 var decreaseGuessValue = function(incorrectGuessCounter, correctGuess, currentGuess, frontEndLetters) {
   // debugger;
   if (correctGuess === false) {
-    alert("Sorry! ''" + currentGuess + "'' is not in the word!");
+    $("#warningContainer").show();
+    $("#displayWarning").text(currentGuess.toUpperCase());
     incorrectGuessCounter -= 1;
+    $("#displayHangmanImage").empty().append("<img src='img/hangmanStages/hangman" + incorrectGuessCounter + ".png'>");
   }
   return incorrectGuessCounter;
 }
@@ -51,6 +53,9 @@ var revealCorrectLetter = function(currentIndex, currentGuess, frontEndLetters) 
 
 var winLoseCondition = function(incorrectGuessCounter, frontEndLetters) {
   if (incorrectGuessCounter === 0) {
+    $("span.letterColor").off();
+    $("span.letterColor").addClass("postLetterColor");
+    $("span.letterColor").removeClass("letterColor");
     return "lose";
   }
 
@@ -71,16 +76,21 @@ var displayWord = function(frontEndLetters) {
   return frontEndLetters.toString().replace( /,/g, " " );
 }
 
-var displayLetters = function(alphabetArray, backEndLetters, frontEndLetters, incorrectGuessCounter) {
+var displayLetters = function(alphabetArray, backEndLetters, frontEndLetters, incorrectGuessCounter, currentWord) {
   for (var i = 0; i < alphabetArray.length; i++) {
     var letterObject = new Letter(alphabetArray[i]);
     $("div#letterContainer").append("<span class='letterColor'>" + letterObject.letter + "</span>")
+    if (i === 12) {
+      $("div#letterContainer").append("<br>")
+    }
 
     $(".letterColor").last().click(function() {
       var currentGuess = $(this).text().toLowerCase();
       $(this).removeClass("letterColor");
       $(this).addClass("deactivatedLetter");
       $(this).off();
+
+      $("#warningContainer").hide();
 
       correctGuess = letterGuess(currentGuess, backEndLetters, frontEndLetters, incorrectGuessCounter);
       incorrectGuessCounter = decreaseGuessValue(incorrectGuessCounter, correctGuess, currentGuess, frontEndLetters)
@@ -94,6 +104,7 @@ var displayLetters = function(alphabetArray, backEndLetters, frontEndLetters, in
 
       } else if (gameOutcome === "lose") {
         $("form#guessEntryForm").hide();
+        $("#lossDisplayWord").text(currentWord);
         $(".loser").show();
       }
       $("input#letterGuess").val("");
@@ -114,6 +125,7 @@ var runHangman = function() {
 
   //Set Initial Amount of Incorrect Guesses Remaining
   var incorrectGuessCounter = 8;
+  $("#displayHangmanImage").append("<img src='img/hangmanStages/hangman" + incorrectGuessCounter + ".png'>");
 
   //Intially Display Front End Array and Remaning Guesses
   $("span#displayFrontEndLetters").text(displayWord(frontEndLetters));
@@ -121,28 +133,8 @@ var runHangman = function() {
 
   //Define Neutral Game Outcome (as opposed to win/lose)
   var gameOutcome = "";
-  displayLetters(alphabetArray, backEndLetters, frontEndLetters, incorrectGuessCounter);
+  displayLetters(alphabetArray, backEndLetters, frontEndLetters, incorrectGuessCounter, currentWord);
 
-    //User Inputs Letter Guess
-    // $("span.letterColor").click(function() {
-    //   var currentGuess = $("span.letterColor").text().toLowerCase();
-    //
-    //   correctGuess = letterGuess(currentGuess, backEndLetters, frontEndLetters, incorrectGuessCounter);
-    //   incorrectGuessCounter = decreaseGuessValue(incorrectGuessCounter, correctGuess, currentGuess, frontEndLetters)
-    //   $("span#displayRemainingGuesses").text(incorrectGuessCounter);
-    //   $("span#displayFrontEndLetters").text(displayWord(frontEndLetters));
-    //
-    //   var gameOutcome = winLoseCondition(incorrectGuessCounter, frontEndLetters);
-    //   if (gameOutcome === "win") {
-    //     $("form#guessEntryForm").hide();
-    //     $(".winner").show();
-    //
-    //   } else if (gameOutcome === "lose") {
-    //     $("form#guessEntryForm").hide();
-    //     $(".loser").show();
-    //   }
-    //   $("input#letterGuess").val("");
-    // });
 }
 
 $(document).ready(function() {
@@ -150,10 +142,10 @@ $(document).ready(function() {
   runHangman();
 
   $("button.reset").click(function(){
-
-    runHangman();
-    $("form#guessEntryForm").show();
-    $(".loser").hide();
-    $(".winner").hide();
+    location.reload();
+    // runHangman();
+    // $("form#guessEntryForm").show();
+    // $(".loser").hide();
+    // $(".winner").hide();
   });
 });
