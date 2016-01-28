@@ -5,3 +5,17 @@
 .loser {
   display: none;
 }
+
+.letterColor {
+  cursor: pointer;
+  color: #0088cc;
+}
+
+.deactivatedLetter {
+  cursor: default;
+  color: red;
+}
+
+.letterColor:hover {
+  text-decoration: underline;
+}
