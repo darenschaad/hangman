@@ -9,21 +9,25 @@
     <title>Hangman</title>
   </head>
   <body>
-    <div class="container">
+    <div class="backgroundImage">
       <div class="header">
         <h1>Hangman</h1>
         <hr>
-        <h4>Click on the letters below to guess the word!</h4>
+
       </div>
+    </div>
+
+    <div class="container">
+      <h4>Click on the letters below to guess the word!</h4>
       <div class="row">
         <div class="col-sm-8">
+          <div id="letterContainer">
+          </div>
           <div>
             <span id="displayFrontEndLetters"></span><br>
-            <div id="remainingGuessesContainer">
-              <span>Incorrect Guesses Remaining: <span><span id="displayRemainingGuesses"></span>
-            </div>
           </div>
-          <div id="letterContainer">
+          <div id="remainingGuessesContainer">
+            <span>Incorrect Guesses Remaining: <span><span id="displayRemainingGuesses"></span>
           </div>
           <div id="warningContainer">
             <span>Sorry! '</span><span id="displayWarning"></span><span>' is not in the word!</span>
