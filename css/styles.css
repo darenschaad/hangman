@@ -54,6 +54,17 @@
 }
 
 #displayHangmanImage img {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
+}
+.loser img {
+  max width: 400px;
+  height: auto;
+  padding: 10px;
+}
+
+.winner img {
+  max-width: 400px;
+  height: auto;
+  padding: 10px;
 }

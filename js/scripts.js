@@ -1,4 +1,4 @@
-var wordBank = ["cat", "couch", "computer", "airplane", "programming", "refrigerator", "tunnel", "apricot", "symphany", "obsequious", "beautiful", "runner", "bowling", "pitcher", "global", "brainiac", "slammer", "justified", "incredible", "enjoyement", "quitter", "pheasant", "tacos", "genuine", "tubular", "groovy", "zoinks", "android", "gruel", "toast", "xenophobia", "xylophone", "matrix"];
+var wordBank = ["cat", "couch", "computer", "airplane", "programming", "refrigerator", "tunnel", "apricot", "symphony", "obsequious", "beautiful", "runner", "bowling", "pitcher", "global", "brainiac", "slammer", "justified", "incredible", "enjoyement", "quitter", "pheasant", "tacos", "genuine", "tubular", "groovy", "zoinks", "android", "gruel", "toast", "xenophobia", "xylophone", "matrix", "calculator", "reverberate", "pandora", "distributor", "garbage", "psalm", "zeus", "palindrome", "succulent", "morose", "serendipity"];
 
 var alphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
