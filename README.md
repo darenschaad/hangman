@@ -1,22 +1,18 @@
-#Address Book
+#Hangman
 
-###By: Daren 
+###By: Daren Schaad
 
 ##Description
 
-Ping Pong is an application for testing or demonstrating basic proficiency in Javascript, jQuery, git, Markdown, HTML, Bootstrap, CSS, and Behavior Driven Development. A user can enter a number, and the application returns a range of numbers from 1 to the number entered with the following exceptions:
-
-- Numbers divisible by 3 are replaced with the word "ping"
-- Numbers divisible by 5 are replaced with the word "pong"
-- Numbers divisible by 15 are replaced with the word "ping pong"
+Hangman is an application I worked on in my intro to programming class at Epicodus.  It shows a basic proficiency in Javascript, jQuery, git, Markdown, HTML, Bootstrap, CSS, and Behavior Driven Development. A user can make a guess by clicking on a letter and if the letter is in the word it shows up, if not the hangman gets another part drawn on the screen.
 
 ##Installation
 
-Install ping-pong locally by cloning this repository:
+Install hangman locally by cloning this repository:
 
-https://github.com/pokojt/ping-pong.git
+https://github.com/darenschaad/hangman
 
-Or, you can run the application [here](http://pokojt.github.io/ping-pong).
+Or, you can run the application [here](http://darenschaad.github.io/hangman/).
 
 ##Technologies Used
 
@@ -30,6 +26,4 @@ Or, you can run the application [here](http://pokojt.github.io/ping-pong).
 
 ##Copyright (c)
 
- Copyright 2016 Taylor Pokoj.
-
- This software is licensed under the MIT license.
+ Copyright 2016 Daren Schaad.
